@@ -1,0 +1,24 @@
+PODS:
+  - PolarBleSdk (3.2.7):
+    - RxSwift (~> 6.5.0)
+    - SwiftProtobuf (~> 1.0)
+  - RxSwift (6.5.0)
+  - SwiftProtobuf (1.19.0)
+
+DEPENDENCIES:
+  - PolarBleSdk (~> 3.2)
+
+SPEC REPOS:
+  trunk:
+    - PolarBleSdk
+    - RxSwift
+    - SwiftProtobuf
+
+SPEC CHECKSUMS:
+  PolarBleSdk: 4bb6aca272d73192b5314b3fe32051ec6db8959c
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SwiftProtobuf: 6ef3f0e422ef90d6605ca20b21a94f6c1324d6b3
+
+PODFILE CHECKSUM: 873d513d0aa80ead1fa8b07a4d77df22b0bafea2
+
+COCOAPODS: 1.11.2

@@ -13,6 +13,7 @@
 		1D0184772808270900A39818 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D0184752808270900A39818 /* Main.storyboard */; };
 		1D0184792808270A00A39818 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D0184782808270A00A39818 /* Assets.xcassets */; };
 		1D01847C2808270A00A39818 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D01847A2808270A00A39818 /* LaunchScreen.storyboard */; };
+		A944434B436F70166196FC12 /* Pods_PolarApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AEC0BA77AB1B360BB8108A /* Pods_PolarApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		1D0184782808270A00A39818 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D01847B2808270A00A39818 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D01847D2808270A00A39818 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31AEC0BA77AB1B360BB8108A /* Pods_PolarApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PolarApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		570CC047E4C2A412719A413B /* Pods-PolarApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolarApp.debug.xcconfig"; path = "Target Support Files/Pods-PolarApp/Pods-PolarApp.debug.xcconfig"; sourceTree = "<group>"; };
+		CC260F7D2A49DAFF53D98297 /* Pods-PolarApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolarApp.release.xcconfig"; path = "Target Support Files/Pods-PolarApp/Pods-PolarApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A944434B436F70166196FC12 /* Pods_PolarApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				1D01846E2808270900A39818 /* PolarApp */,
 				1D01846D2808270900A39818 /* Products */,
+				D36297C5C840A9576E6923C4 /* Pods */,
+				757ED25FB729F791B91367A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,23 @@
 			path = PolarApp;
 			sourceTree = "<group>";
 		};
+		757ED25FB729F791B91367A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				31AEC0BA77AB1B360BB8108A /* Pods_PolarApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D36297C5C840A9576E6923C4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				570CC047E4C2A412719A413B /* Pods-PolarApp.debug.xcconfig */,
+				CC260F7D2A49DAFF53D98297 /* Pods-PolarApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D0184802808270A00A39818 /* Build configuration list for PBXNativeTarget "PolarApp" */;
 			buildPhases = (
+				4C1F24A65F80FC4F61BBE610 /* [CP] Check Pods Manifest.lock */,
 				1D0184682808270900A39818 /* Sources */,
 				1D0184692808270900A39818 /* Frameworks */,
 				1D01846A2808270900A39818 /* Resources */,
+				D6DFAB5D4D0B1CB9C51C8DA8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +158,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C1F24A65F80FC4F61BBE610 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PolarApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6DFAB5D4D0B1CB9C51C8DA8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PolarApp/Pods-PolarApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PolarApp/Pods-PolarApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PolarApp/Pods-PolarApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D0184682808270900A39818 /* Sources */ = {
@@ -282,6 +350,7 @@
 		};
 		1D0184812808270A00A39818 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 570CC047E4C2A412719A413B /* Pods-PolarApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +379,7 @@
 		};
 		1D0184822808270A00A39818 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC260F7D2A49DAFF53D98297 /* Pods-PolarApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
