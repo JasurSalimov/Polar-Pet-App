@@ -50,9 +50,11 @@ class ViewController: UIViewController{
     private var bag = DisposeBag()
     private var timer: Timer? = nil
     private var selectedID = String()
+    private var selectedName = String()
     private var hrValue = Int()
     private var time = Int()
     private var calories = Double()
+    private var isPolarConnected = Bool()
     override func viewDidLoad() {
         super.viewDidLoad()
         properties()
@@ -104,6 +106,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
         cell.textLabel?.text = polarDevices[indexPath.item].name
+        cell.accessoryType = .none
+        if(cell.textLabel?.text == selectedName && isPolarConnected){
+            cell.accessoryType = .checkmark
+        }
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -111,6 +117,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedID = polarDevices[indexPath.item].id
+        selectedName = polarDevices[indexPath.item].name
         do {
             try api.connectToDevice(selectedID)
             debugPrint("Trying to connect to - ", selectedID)
@@ -146,16 +153,16 @@ extension ViewController:PolarBleApiObserver{
             alert.dismiss(animated: true)
         })
         let result = api.startAutoConnectToDevice(identifier.rssi, service: nil , polarDeviceType: identifier.deviceId)
+        isPolarConnected = true
+        tableView.reloadData()
         debugPrint("Reconnection established result is: ", result)
-
-        
-
     }
     
    @objc func updateOnceASecond(){
+       
         time += 1
-       if (time%10 == 0){
-           calories += 0.014*78*(10/60)*(0.12*Double(hrValue)-7)
+       if (time%10 == 0 && isPolarConnected){
+           calories += 0.014*78*0.1666*(0.12*Double(hrValue)-7)
        }
        activeTime.text = "Active Time: " + timeFormatted(totalSeconds: time)
        activeCalories.text = "Calories: " + String(Int(calories))
@@ -164,6 +171,7 @@ extension ViewController:PolarBleApiObserver{
     }
     
     func deviceDisconnected(_ identifier: PolarDeviceInfo) {
+        isPolarConnected = false
         debugPrint("Polar Device with -", identifier, "is disconnected")
     }
     func timeFormatted(totalSeconds: Int) -> String {
