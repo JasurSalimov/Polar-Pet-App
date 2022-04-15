@@ -41,6 +41,7 @@ class ViewController: UIViewController{
     }()
     private var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.isScrollEnabled = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
@@ -138,17 +139,27 @@ extension ViewController:PolarBleApiObserver{
         present(alert, animated: true)
         timer?.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateOnceASecond), userInfo: nil, repeats: true)
-        time = 0
+        if (identifier.deviceId != selectedID){
+            time = 0
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
             alert.dismiss(animated: true)
         })
+        let result = api.startAutoConnectToDevice(identifier.rssi, service: nil , polarDeviceType: identifier.deviceId)
+        debugPrint("Reconnection established result is: ", result)
+
+        
+
     }
     
    @objc func updateOnceASecond(){
         time += 1
-       calories += 0.0145*78/3600*(0.12*Double(hrValue-7))
+       if (time%10 == 0){
+           calories += 0.014*78*(10/60)*(0.12*Double(hrValue)-7)
+       }
        activeTime.text = "Active Time: " + timeFormatted(totalSeconds: time)
        activeCalories.text = "Calories: " + String(Int(calories))
+       heartRate.text = "Heart rate is: " + String(hrValue)
 
     }
     
@@ -193,7 +204,6 @@ extension ViewController:PolarBleApiDeviceHrObserver{
     func hrValueReceived(_ identifier: String, data: PolarHrData) {
         hrValue = Int(data.hr)
         debugPrint("Heart rate is received: ", hrValue, Date())
-        heartRate.text = "Heart rate is: " + String(hrValue)
     }
 }
 
